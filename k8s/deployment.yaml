@@ -1,0 +1,37 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  creationTimestamp: null
+  labels:
+    app: demo2
+  name: demo2
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: demo2
+  strategy: {}
+  template:
+    metadata:
+      creationTimestamp: null
+      labels:
+        app: demo2
+    spec:
+      containers:
+        - image: demo2:latest
+          name: demo2
+          resources: {}
+          imagePullPolicy: Never
+status: {}
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: demo2
+spec:
+  selector:
+    app: demo2
+  ports:
+    - port: 8090
+      targetPort: 8080
+  type: LoadBalancer
